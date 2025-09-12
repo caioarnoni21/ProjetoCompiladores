@@ -99,6 +99,29 @@ ARGUMENTO      -> "," ARGUMENTOS | ε
 
 RETORNO -> "retorna" EXPRESSAO ";"
 
+## Minecraft Grammar
+
+
+| Regra                                          | FIRST                                                                                                                | FOLLOW                                                                                  |
+| ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| **PROGRAMA**                                   | { **BLOCO** }                                                                                                        | { **\$** }                                                                              |
+| **BLOCO**                                      | { **COMANDO**, ε }                                                                                                   | { `}`, **\$** }                                                                         |
+| **COMANDO**                                    | { `comparator`, `repeater`, `hopper`, `piston`, `command_block`, `lamp`, `execute`, `craft`, **TIPO**, **ID**, `;` } | { inicia-COMANDO, `}`, **\$** }                                                         |
+| **DECLARACAO**                                 | { `craft`, **TIPO** }                                                                                                | { inicia-COMANDO, `}`, **\$** }                                                         |
+| **ATRIBUICAO**                                 | { **ID**, `hopper` }                                                                                                 | { inicia-COMANDO, `}`, **\$** }                                                         |
+| **INCREMENTO**                                 | { **ID**, `piston` }                                                                                                 | { inicia-COMANDO, `}`, **\$** }                                                         |
+| **DECISAO** (`comparator...`)                  | { `comparator` }                                                                                                     | { inicia-COMANDO, `}`, **\$** }                                                         |
+| **REPETICAO** (`repeater...`)                  | { `repeater` }                                                                                                       | { inicia-COMANDO, `}`, **\$** }                                                         |
+| **FUNCAO** (`command_block...`)                | { `command_block` }                                                                                                  | { inicia-COMANDO, `}`, **\$** }                                                         |
+| **ESCREVA** (`lamp(...) ;`)                    | { `lamp` }                                                                                                           | { inicia-COMANDO, `}`, **\$** }                                                         |
+| **EXECUTE** (`execute { … } enquanto ( … ) ;`) | { `execute` }                                                                                                        | { inicia-COMANDO, `}`, **\$** }                                                         |
+| **TIPO**                                       | { `texto`, `bool`, `int`, `dec` }                                                                                    | { **ID**, `{` }                                                                         |
+| **ID**                                         | { `[a–zA–Z]` }                                                                                                       | { `=`, `+=`, `-=`, `++`, `--`, `(`, `)`, `,`, `;`, `}`, `<-` }                          |
+| **NUM**                                        | { `[0–9]` }                                                                                                          | { `+`, `-`, `*`, `/`, `>`, `<`, `==`, `<=`, `>=`, `!=`, `ou`, `e`, `)`, `;`, `,`, `]` } |
+| **STRING**                                     | { `"`…`"` }                                                                                                          | { `+`, `==`, `!=`, `ou`, `e`, `)`, `;`, `,` }                                           |
+| **BOOLEAN**                                    | { `verdade`, `mentira` }                                                                                             | { `==`, `!=`, `ou`, `e`, `)`, `;`, `,` }                                                |
+
+
 (* -------- I/O e execução -------- *)
 (* saída como “lamp” (acender/imprimir) *)
 ESCREVA -> "lamp" "(" ARGUMENTOS ")" ";"
