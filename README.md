@@ -5,7 +5,7 @@
 Caio Arnoni - 22.221.019-7 
 
 Guilherme Matias - 22.122.071-8
-#Gramatica
+## Gramatica
 
 ROGRAMA -> BLOCO
 
@@ -13,38 +13,39 @@ BLOCO -> COMANDO BLOCO | ε
 
 COMANDO -> DECISAO | DECLARACAO | REPETICAO | ATRIBUICAO | FUNCAO | INCREMENTO | ESCREVA | EXECUTE
 
-(* -------- Elementos básicos -------- *)
-ID       -> [a-zA-Z][a-zA-Z0-9]*
-NUM      -> [0-9]+ | [0-9]+"."[0-9]+
-STRING   -> '"' (qualquer_caractere_exceto_queabra) '"'
-BOOLEAN  -> "verdade" | "mentira"
-TIPO     -> "texto" | "bool" | "int" | "dec"
+## Elementos basicos 
+ID       -> [a-zA-Z][a-zA-Z0-9]*<br/>
+NUM      -> [0-9]+ | [0-9]+"."[0-9]+<br/>
+STRING   -> '"' (qualquer_caractere_exceto_queabra) '"'<br/>
+BOOLEAN  -> "verdade" | "mentira"<br/>
+TIPO     -> "texto" | "bool" | "int" | "dec"<br/>
+VALOR    -> ID | NUM | BOOLEAN | STRING<br/>
 
-VALOR    -> ID | NUM | BOOLEAN | STRING
+## Expressões
 
-(* -------- Expressões -------- *)
 EXPRESSAO -> EXPR_ARITMETICA | EXPR_LOGICA | VALOR
 
-(* Aritmética *)
-OPERACAO_MATEMATICA -> TERMO EXPR_MAT
-EXPR_MAT            -> "+" TERMO EXPR_MAT | "-" TERMO EXPR_MAT | ε
-TERMO               -> FATOR TERMO'
-TERMO'              -> "*" FATOR TERMO' | "/" FATOR TERMO' | ε
-FATOR               -> ID | NUM | "(" OPERACAO_MATEMATICA ")"
+## Aritimetica
 
-(* Lógica *)
-EXPRESSAO_LOGICA    -> PRIM_LOG (EXPRESSAO_LOGICA')?
-PRIM_LOG            -> ID | NUM | BOOLEAN | STRING | "(" EXPRESSAO_LOGICA ")"
-EXPRESSAO_LOGICA'   -> OPERADOR_ARITMETICO EXPRESSAO_LOGICA EXPREND
+OPERACAO_MATEMATICA -> TERMO EXPR_MAT<br/>
+EXPR_MAT            -> "+" TERMO EXPR_MAT | "-" TERMO EXPR_MAT | ε<br/>
+TERMO               -> FATOR TERMO'<br/>
+TERMO'              -> "*" FATOR TERMO' | "/" FATOR TERMO' | ε<br/>
+FATOR               -> ID | NUM | "(" OPERACAO_MATEMATICA ")"<br/>
+
+## Logica
+EXPRESSAO_LOGICA    -> PRIM_LOG (EXPRESSAO_LOGICA')?<br/>
+PRIM_LOG            -> ID | NUM | BOOLEAN | STRING | "(" EXPRESSAO_LOGICA ")"<br/>
+EXPRESSAO_LOGICA'   -> OPERADOR_ARITMETICO EXPRESSAO_LOGICA EXPREND<br/>
                     | OPERADOR_RELACIONAL  EXPRESSAO_LOGICA EXPREND
                     | OPERADOR_LOGICO      EXPRESSAO_LOGICA EXPREND
-EXPREND             -> EXPREND  (* zero ou mais repetições via recursão *) | ε
+EXPREND             -> EXPREND  (* zero ou mais repetições via recursão *) | ε<br/>
 
-OPERADOR_ARITMETICO -> "+" | "-" | "*" | "/"
-OPERADOR_RELACIONAL -> ">" | "<" | "==" | "<=" | ">=" | "!="
-OPERADOR_LOGICO     -> "ou" | "e"
+OPERADOR_ARITMETICO -> "+" | "-" | "*" | "/"<br/>
+OPERADOR_RELACIONAL -> ">" | "<" | "==" | "<=" | ">=" | "!="<br/>
+OPERADOR_LOGICO     -> "ou" | "e"<br/>
 
-(* -------- Variáveis -------- *)
+## Variaveis
 (* DECLARACAO vira “craft” (forjar/criar item) *)
 DECLARACAO -> TIPO ID "=" EXPRESSAO ";" 
             | "craft" TIPO ID "=" EXPRESSAO ";"   (* alias minecraft *)
