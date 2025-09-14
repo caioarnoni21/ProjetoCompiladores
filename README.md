@@ -14,11 +14,17 @@ BLOCO -> COMANDO BLOCO | ε
 COMANDO -> DECISAO | DECLARACAO | REPETICAO | ATRIBUICAO | FUNCAO | INCREMENTO | ESCREVA | EXECUTE
 
 ## Elementos basicos 
+
 ID       -> [a-zA-Z][a-zA-Z0-9]*<br/>
+
 NUM      -> [0-9]+ | [0-9]+"."[0-9]+<br/>
+
 STRING   -> '"' (qualquer_caractere_exceto_queabra) '"'<br/>
+
 BOOLEAN  -> "verdade" | "mentira"<br/>
+
 TIPO     -> "texto" | "bool" | "int" | "dec"<br/>
+
 VALOR    -> ID | NUM | BOOLEAN | STRING<br/>
 
 ## Expressões
@@ -28,24 +34,35 @@ EXPRESSAO -> EXPR_ARITMETICA | EXPR_LOGICA | VALOR
 ## Aritimetica
 
 OPERACAO_MATEMATICA -> TERMO EXPR_MAT<br/>
+
 EXPR_MAT            -> "+" TERMO EXPR_MAT | "-" TERMO EXPR_MAT | ε<br/>
+
 TERMO               -> FATOR TERMO'<br/>
+
 TERMO'              -> "*" FATOR TERMO' | "/" FATOR TERMO' | ε<br/>
+
 FATOR               -> ID | NUM | "(" OPERACAO_MATEMATICA ")"<br/>
 
 ## Logica
+
 EXPRESSAO_LOGICA    -> PRIM_LOG (EXPRESSAO_LOGICA')?<br/>
+
 PRIM_LOG            -> ID | NUM | BOOLEAN | STRING | "(" EXPRESSAO_LOGICA ")"<br/>
+
 EXPRESSAO_LOGICA'   -> OPERADOR_ARITMETICO EXPRESSAO_LOGICA EXPREND<br/>
                     | OPERADOR_RELACIONAL  EXPRESSAO_LOGICA EXPREND
                     | OPERADOR_LOGICO      EXPRESSAO_LOGICA EXPREND
+                    
 EXPREND             -> EXPREND  (* zero ou mais repetições via recursão *) | ε<br/>
 
 OPERADOR_ARITMETICO -> "+" | "-" | "*" | "/"<br/>
+
 OPERADOR_RELACIONAL -> ">" | "<" | "==" | "<=" | ">=" | "!="<br/>
+
 OPERADOR_LOGICO     -> "ou" | "e"<br/>
 
 ## Variaveis
+
 (* DECLARACAO vira “craft” (forjar/criar item) *)
 DECLARACAO -> TIPO ID "=" EXPRESSAO ";" 
             | "craft" TIPO ID "=" EXPRESSAO ";"   (* alias minecraft *)
