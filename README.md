@@ -5,6 +5,9 @@
 Caio Arnoni - 22.221.019-7 
 
 Guilherme Matias - 22.122.071-8
+
+Gustavo Sesoko Lemos - 22.123.064-2
+
 ## Gramatica
 
 ROGRAMA -> BLOCO
